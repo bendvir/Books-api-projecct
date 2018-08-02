@@ -1,0 +1,31 @@
+<div class="modal fade" id="DeleteModal" *ngIf="selectedBook!='undefined'">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">                       
+                <h2>delete this book?</h2>
+            </div>  
+            <!-- Modal body -->
+            <!-- <div class="modal-body">                           
+                <div> title: 
+                    <input 
+                    required 
+                    type="text" 
+                    [(ngModel)]="selectedBook.volumeInfo.title" 
+                    #titleValid ="ngModel"
+                    size="55"  
+                    maxlength="40" 
+                    pattern="(^[A-Za-z])|(\s)([A-Za-z])|[0-9]|(\s)"/>             
+                    <div class="alert alert-danger" *ngIf="titleValid.touched && !titleValid.valid">title is mandatory and only in english                             
+                    </div>
+                </div>
+              </div> -->
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="deleteBook()">Delete</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

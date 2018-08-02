@@ -1,0 +1,36 @@
+<div class="container">
+    <h2>Our books:</h2>
+    
+    <div>
+            <a class="btn btn-primary"  data-toggle="modal" data-target="#addModal">Add new book</a>
+    </div> 
+    <div class="row">
+
+        <div class="col-md-3 book-container" *ngFor="let book of localBookData.items">
+            <div class="thumbnail">
+
+                <div class="caption">
+
+                    <h2>{{shortTitle(book.volumeInfo.title | TitleFilter)}}</h2>
+                    <hr/>
+                    <img [src]="book.volumeInfo.imageLinks?.thumbnail" [title]="book.volumeInfo.title" />
+                    <p>id: {{book.id}}</p>
+                    <p>authors:
+                        <span *ngIf="book.volumeInfo.authors">{{book.volumeInfo.authors[0]}}</span>
+                        <span *ngIf="!book.volumeInfo.authors">unknown</span>
+                    </p>
+                    <p>published date: {{ book.volumeInfo.publishedDate || 'unknown' }}
+                    </p>
+
+                    <p>
+                        <a class="btn btn-primary" (click)="editBook(book.id)" data-toggle="modal" data-target="#myModal">Edit</a>
+                        <a class="btn btn-primary" (click)="deleteBook(book.id)" data-toggle="modal" data-target="#DeleteModal">Delete</a>
+                    </p>
+                </div>
+            </div>          
+        </div>
+    </div>
+</div>
+<app-popup-edit *ngIf="selectedBook!=null && selectedBook!='undefined'" [selectedBook]="selectedBook"></app-popup-edit>
+<app-popup-delete  [selectedBook]="selectedBook"></app-popup-delete>
+<app-popup-add-new-book ></app-popup-add-new-book>

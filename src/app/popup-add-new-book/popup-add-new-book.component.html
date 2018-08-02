@@ -1,0 +1,57 @@
+<div class="modal fade" id="addModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">                       
+                <h2>Add new book</h2>
+            </div>  
+            <div class="alert-danger" *ngIf="errorAllreadyExist">
+                user Allready Exist
+              </div> 
+            <!-- Modal body -->
+            <div class="modal-body">                           
+                <div> title: 
+                    <input 
+                    required 
+                    type="text" 
+                    [(ngModel)]="book.volumeInfo.title" 
+                    #titleValid ="ngModel"
+                    size="55"  
+                    maxlength="40" 
+                    pattern="(^[A-Za-z])|(\s)([A-Za-z])|[0-9]|(\s)"/>             
+                    <div class="alert alert-danger" *ngIf="titleValid.touched && !titleValid.valid">title is mandatory and only in english                             
+                    </div>
+                </div>
+                <div> Author:
+                    <input
+                    required 
+                     type="text" 
+                     [(ngModel)]="book.volumeInfo.authors" 
+                     #authorValid ="ngModel" 
+                    maxlength="40" 
+                    pattern="(^[A-Za-z])|(\s)([A-Za-z])|[0-9]|(\s)"/>             
+                    <div class="alert alert-danger" *ngIf="authorValid.touched && !authorValid.valid">Author name is mandatory and only in english                             
+                    </div>                         
+                </div>
+                <div> Date:
+                    <input 
+                    required
+                    type="text"
+                    [(ngModel)]="book.volumeInfo.publishedDate"
+                    #dateValid ="ngModel"
+                    minlength="4" 
+                    maxlength="4"
+                    pattern="^[12][0-9]{3}$"/>
+                    <div class="alert alert-danger" *ngIf="dateValid.touched && !dateValid.valid">please enter valid year                             
+                    </div> 
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" [attr.data-dismiss]="errorEmptyMsg==true || errorAllreadyExist==true?'': 'modal'" (click)="addBook()">addBook</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
